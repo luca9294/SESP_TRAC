@@ -10,13 +10,16 @@ String url, user, passw;
 
 String html, methods;
 boolean login;
+
+boolean logged = false;
 	
 	
 	public TracServer(String url, String user, String passw){
 		this.url = url;
 		this.user = user;
 		this.passw = passw;
-	
+		
+		
 	}
 	
 	
@@ -32,7 +35,7 @@ boolean login;
 			public void run() {
 		
 				JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
-				req.setCredentials(user, passw);
+				 req.setCredentials(user, passw);
 				String ticket;
 					try {
 						html = req.call("wiki.getPageHTML", name1).toString();
@@ -85,6 +88,7 @@ boolean login;
 				return false;}
 			
 			else
+				logged=true;
 				return true;}
 	
 

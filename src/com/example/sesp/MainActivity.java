@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.AlertDialog.Builder;
+import android.content.Intent;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
@@ -52,6 +53,24 @@ public class MainActivity extends Activity {
 			else if ((serverS.substring(serverS.length()-4, serverS.length()).equals("/rpc")) || (serverS.substring(serverS.length()-4, serverS.length()).equals("/xmlrpc")) ){
 				showDialog(3);
 		}
+			
+			else{
+				TracServer server = new TracServer(serverS,userS,passS);
+				//if (server.validLogin()){
+					Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
+		        	intent.putExtra("Wiki", "WikiStart");
+		   
+				  startActivity(intent);
+					
+					
+					
+					
+				//}
+				//else 
+					//showDialog(4);
+				
+			}
+				
 	
 	
 		}
