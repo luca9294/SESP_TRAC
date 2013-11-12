@@ -7,18 +7,45 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		 SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
+	     String userSh = sharedPref.getString("user", "");
+	     String passwordSh = sharedPref.getString("pass", "");
+	     String serverSh = sharedPref.getString("server", "");		
+		
+		
+		if ((serverSh.length() != 0) && (passwordSh.length() != 0)){
+			Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
+			intent.putExtra("Wiki", "WikiStart");
+		    startActivity(intent);
+			
+			
+			
+		}
+		
+		
+		
+		
+		else{
+		
+		
+		
+		
+		
+		
 		final EditText server = (EditText) findViewById(R.id.editText1);
 		final EditText user = (EditText) findViewById(R.id.editText2);
 		final EditText pass = (EditText) findViewById(R.id.editText3);
@@ -55,13 +82,23 @@ public class MainActivity extends Activity {
 		}
 			
 			else{
-				TracServer server = new TracServer(serverS,userS,passS);
+				TracServer server_trac = new TracServer(serverS,userS,passS);
 				//if (server.validLogin()){
+				   SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
+				    //now get Editor
+				   SharedPreferences.Editor editor= sharedPref.edit();
+				    //put your value
+				     editor.putString("user", userS);
+				     editor.putString("pass", passS);
+				     editor.putString("server", serverS);
+				     
+				   //commits your edits
+				     editor.commit();
+				  
+				
 					Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
 					intent.putExtra("Wiki", "WikiStart");
-					intent.putExtra("id", userS);
-					intent.putExtra("pass", passS);
-				  startActivity(intent);
+				    startActivity(intent);
 					
 					
 					
@@ -82,7 +119,7 @@ public class MainActivity extends Activity {
 			
 			
 		});
-	
+		}
 	
 	}
 
@@ -142,17 +179,16 @@ protected Dialog onCreateDialog(int id) {
 		break;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	}
 	
 	return super.onCreateDialog(id);
 }
+
+
+
+
+
+
+
 }
