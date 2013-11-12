@@ -7,9 +7,11 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="18" />
-    
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
 
     <application
         android:allowBackup="true"
@@ -26,6 +28,10 @@
         <activity
             android:name="com.example.sesp.WikiActivity"
             android:label="@string/title_activity_wiki" >
+        </activity>
+        <activity
+            android:name="com.example.sesp.ListWikiActivity"
+            android:label="@string/title_activity_list_wiki" >
         </activity>
     </application>
 

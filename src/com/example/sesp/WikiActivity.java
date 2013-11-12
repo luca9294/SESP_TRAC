@@ -125,10 +125,15 @@ public class WikiActivity extends Activity {
 	        	alert.show();
 	        	
 	            return true;
-	        case R.id.item2:
 	            
-	            return true;
-	        }
+	        case R.id.item2:
+	        	 
+		        	   Intent intent = new Intent(getApplicationContext(), ListWikiActivity.class);
+					
+					  startActivity(intent);
+		        	  
+	            return true;}
+	        
 	        return false;
 	    }
 	}		
