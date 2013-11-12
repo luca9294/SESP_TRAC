@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 					showDialog(1);
 				}
 			
-			else if (!(serverS.substring(0, 7).equals("http://"))){
+			else if (!(serverS.substring(0, 4).equals("http"))){
 					showDialog(2);
 				
 			}
@@ -58,16 +58,17 @@ public class MainActivity extends Activity {
 				TracServer server = new TracServer(serverS,userS,passS);
 				//if (server.validLogin()){
 					Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
-		        	intent.putExtra("Wiki", "WikiStart");
-		   
+					intent.putExtra("Wiki", "WikiStart");
+					intent.putExtra("id", userS);
+					intent.putExtra("pass", passS);
 				  startActivity(intent);
 					
 					
 					
 					
 				//}
-				//else 
-					//showDialog(4);
+			//	else 
+				//	showDialog(4);
 				
 			}
 				

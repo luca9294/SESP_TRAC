@@ -7,7 +7,7 @@ import android.util.Log;
 
 public class TracServer {
 String url, user, passw;
-
+String toE;
 String html, methods;
 boolean login;
 
@@ -39,7 +39,7 @@ boolean logged = false;
 				String ticket;
 					try {
 						html = req.call("wiki.getPageHTML", name1).toString();
-	
+						//html = req.call("ticket.create", "ECLIP", "ECLIP").toString();
 						
 					} catch (JSONRPCException e) {
 						// TODO Auto-generated catch block
@@ -54,51 +54,11 @@ boolean logged = false;
 	}
 	
 	
-	public boolean validLogin(){
-		
-		
-		final Thread f = new Thread() {
-
-			@Override
-			public void run() {
-		
-				JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
-				req.setCredentials(user, passw);
-				String ticket;
-					try {
-						methods = req.call("system.listMethods()").toString();
-						
-					} catch (JSONRPCException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-
-			}};
-			
-			f.start();
-			try {
-				f.join();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-
-			if (methods.length()==0){
-				return false;}
-			
-			else
-				logged=true;
-				return true;}
-	
-
-	}
 	
 	
 	
 	
-	
-	
+}
 	
 	
 	
