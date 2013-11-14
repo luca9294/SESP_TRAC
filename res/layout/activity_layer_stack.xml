@@ -109,61 +109,20 @@
                 android:text="Search" >
             </Button>
             
-            
-             <View
-		        android:id="@+id/menu_item_divider_5"
-		        android:layout_width="fill_parent"
-		        android:layout_height="30dp"
-		        android:layout_marginLeft="5dp"
-		        android:layout_marginRight="5dp"
-		        android:layout_below="@+id/menu_item_4"
-		       /> 
-		        
-             
-             
-             
-		        
-            
-            <Button
-                android:id="@+id/menu_item_5"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_below="@+id/menu_item_divider_5"
-                android:layout_marginLeft="15dp"
-                android:gravity="center_vertical"
-                android:text="LOGOUT"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                 >
-            </Button>
-            
-            
-            
-            
-            
-            
-            
            
 		   
             </RelativeLayout>
             
        <!-- Sliding Panel -->     
-		
-		
-		
-		
-		
-		
 		<LinearLayout
                 android:id="@+id/slidingPanel"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:gravity="left"
                 android:orientation="vertical"
-                android:background="@android:color/white" 
-    
-                >
-       <RelativeLayout
+                android:background="@android:color/white" >
+       
+        		<RelativeLayout
 		            android:id="@+id/header"
 		            android:layout_width="match_parent"
 		            android:layout_height="40dp"
@@ -190,42 +149,20 @@
 			                android:visibility="visible" />
 			      
   				</RelativeLayout>
-        		<LinearLayout
-                android:id="@+id/slidingPanel"
+  				  <TextView
+                android:id="@+id/listepays"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:gravity="left"
-                android:orientation="vertical"
-                android:background="@android:color/white" 
-                 android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin" >
+                android:layout_height="50dp"
+                android:layout_below="@+id/menu_item_divider_2"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical" 
+                 android:textColorHighlight="#550022"  
+                android:editable = "true">
+ 				 
+            </TextView>
 
-  				 <ScrollView
-  				     android:id="@+id/textAreaScroller"
-  				     android:layout_width="match_parent"
-  				     android:layout_height="fill_parent"
-  				     android:layout_x="25dp"
-  				     android:layout_y="25dp"
-  				     android:scrollbars="vertical" >
-    
-    <TextView
-        android:id="@+id/spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:maxLines="130"
-        android:scrollbars="vertical" />
-
-    </ScrollView>
-
-
-      </LinearLayout>
+         
 		        
 
 		</LinearLayout>
 </FrameLayout>
-
-
-

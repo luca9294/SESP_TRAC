@@ -51,13 +51,12 @@ public class WikiActivity extends Activity {
 	private LinearLayout slidingPanel;
 	private boolean isExpanded;
 	private DisplayMetrics metrics;	
-	private ListView listView;
 	private RelativeLayout headerPanel;
 	private RelativeLayout menuPanel;
 	private int panelWidth;
 	private ImageView menuViewButton;
-	Button menu1 ;
-	Button menu2,menu3 ;
+	Button menu1, menu4, menu5;
+	Button menu2,menu3, title ;
 	FrameLayout.LayoutParams menuPanelParameters;
 	FrameLayout.LayoutParams slidingPanelParameters;
 	LinearLayout.LayoutParams headerPanelParameters ;
@@ -97,7 +96,33 @@ public class WikiActivity extends Activity {
 	 	menu1 = (Button) findViewById(R.id.menu_item_1);	
 	 	menu2 = (Button) findViewById(R.id.menu_item_2);	
 	 	menu3 = (Button) findViewById(R.id.menu_item_3);	
+		menu4 = (Button) findViewById(R.id.menu_item_4);	
+	 	menu5 = (Button) findViewById(R.id.menu_item_5);
  
+	 	menu1.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(WikiActivity.this, WikiActivity.class);
+				intent.putExtra("Wiki", "WikiStart");
+			    startActivity(intent);
+				
+			}
+			
+
+	 	});
+	 	
+	 	
+	 	menu5.setOnClickListener(new OnClickListener(){
+	 		@Override
+			public void onClick(View arg0) {
+	 			Login login = new Login();
+	 			login.logout();
+				Intent intent = new Intent(WikiActivity.this, MainActivity.class);
+			    startActivity(intent);
+				
+			}
+	 	});
 	 	
 		 
 	
@@ -128,26 +153,22 @@ public class WikiActivity extends Activity {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		Bundle bundle = getIntent().getExtras();
 	     String wiki = bundle.getString("Wiki");
+	  	
+	    title = (Button) findViewById(R.id.menu_title_1);	
 		
+	     
 	     
 		
 		Login login = new Login();
 		TracServer trac = login.getTrac();
+		
+		String user = login.getUser();
+		
+		title.setText("Logged as " + user);
+		
+		
 		
 	    status = (TextView)findViewById(R.id.spinner);
 	   // Log.e("SeI", "SeI");
@@ -159,13 +180,9 @@ public class WikiActivity extends Activity {
 				status.setText(Html.fromHtml(trac.getHTMLWIKI(wiki)));
 				
 				 string =  (String) status.getText();
-				 
+}
 			
-					
-				}
-			
-			
-			
+
 
 
 	 catch (Exception e) {
@@ -243,6 +260,9 @@ public class WikiActivity extends Activity {
 	            editor.remove("server");
 	            editor.clear();
 	            editor.commit();
+	            
+	            Login login = new Login();
+	            login.logout();
 	            
 	            Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
 			

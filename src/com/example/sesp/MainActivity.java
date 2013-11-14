@@ -25,23 +25,27 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		
 		setContentView(R.layout.activity_main);
+		
+		
 		 SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
 	     String userSh = sharedPref.getString("user", "");
 	     String passwordSh = sharedPref.getString("pass", "");
-	     String serverSh = sharedPref.getString("server", "");		
-	     contextOfApplication = getApplicationContext();
+	     String serverSh = sharedPref.getString("server", "");
+	 
+	     
 		
-	if ((serverSh.equals("")) && (passwordSh.equals(""))) {
-			Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
+	  
+	     
+	     
+	if (serverSh.length() != 0) {
+			Intent intent = new Intent(this.getApplicationContext(), WikiActivity.class);
 			intent.putExtra("Wiki", "WikiStart");
 		    startActivity(intent);
 		}
+
 		
-	
-	
-		
+	contextOfApplication = getApplicationContext();
 		final EditText server = (EditText) findViewById(R.id.editText1);
 		final EditText user = (EditText) findViewById(R.id.editText2);
 		final EditText pass = (EditText) findViewById(R.id.editText3);
@@ -125,7 +129,7 @@ public class MainActivity extends Activity {
 			
 		});
 		
-	
+
 	}
 
 	@Override
