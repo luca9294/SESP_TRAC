@@ -24,13 +24,11 @@ public class ListWikiActivity extends Activity {
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_list_wiki);
 		 ListView listView = (ListView)findViewById(R.id.textList);
-		 SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
-	     String userSh = sharedPref.getString("user", "");
-	     String passwordSh = sharedPref.getString("pass", "");
-	     String serverSh = sharedPref.getString("server", "");	
+		
+		 Login login = new Login();
 		 
 		 
-		 TracServer server = new TracServer(serverSh,userSh,passwordSh);
+		 TracServer server =login.getTrac();
 	        final List<String> array;
 			try {
 				array = server.prova();

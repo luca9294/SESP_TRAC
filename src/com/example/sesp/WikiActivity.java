@@ -25,12 +25,22 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.Editable;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -38,29 +48,107 @@ public class WikiActivity extends Activity {
 	
 	private TextView status;
 	String string;
+	private LinearLayout slidingPanel;
+	private boolean isExpanded;
+	private DisplayMetrics metrics;	
+	private ListView listView;
+	private RelativeLayout headerPanel;
+	private RelativeLayout menuPanel;
+	private int panelWidth;
+	private ImageView menuViewButton;
+	Button menu1 ;
+	Button menu2,menu3 ;
+	FrameLayout.LayoutParams menuPanelParameters;
+	FrameLayout.LayoutParams slidingPanelParameters;
+	LinearLayout.LayoutParams headerPanelParameters ;
+	LinearLayout.LayoutParams listViewParameters;
+	
 
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_wiki);
+		
+		
+		metrics = new DisplayMetrics();
+		getWindowManager().getDefaultDisplay().getMetrics(metrics);
+		panelWidth = (int) ((metrics.widthPixels)*0.75);
+	
+		headerPanel = (RelativeLayout) findViewById(R.id.header);
+		headerPanelParameters = (LinearLayout.LayoutParams) headerPanel.getLayoutParams();
+		headerPanelParameters.width = metrics.widthPixels;
+		headerPanel.setLayoutParams(headerPanelParameters);
+		
+		menuPanel = (RelativeLayout) findViewById(R.id.menuPanel);
+		menuPanelParameters = (FrameLayout.LayoutParams) menuPanel.getLayoutParams();
+		menuPanelParameters.width = panelWidth;
+		menuPanel.setLayoutParams(menuPanelParameters);
+		
+		slidingPanel = (LinearLayout) findViewById(R.id.slidingPanel);
+		slidingPanelParameters = (FrameLayout.LayoutParams) slidingPanel.getLayoutParams();
+		slidingPanelParameters.width = metrics.widthPixels;
+		slidingPanel.setLayoutParams(slidingPanelParameters);
+		
+		
+	 
+
+	 	menu1 = (Button) findViewById(R.id.menu_item_1);	
+	 	menu2 = (Button) findViewById(R.id.menu_item_2);	
+	 	menu3 = (Button) findViewById(R.id.menu_item_3);	
+ 
+	 	
+		 
+	
+		menuViewButton = (ImageView) findViewById(R.id.menuViewButton);
+		
+		menuViewButton.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		    	if(!isExpanded){
+		    		isExpanded = true;   		    				        		
+		        	
+		    		//Expand
+		    		new ExpandAnimation(slidingPanel, panelWidth,
+		    	    Animation.RELATIVE_TO_SELF, 0.0f,
+		    	    Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);		    			         	    
+		    	}else{
+		    		isExpanded = false;
+		    		
+		    		//Collapse
+		    		new CollapseAnimation(slidingPanel,panelWidth,
+            	    TranslateAnimation.RELATIVE_TO_SELF, 0.75f,
+            	    TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, 0.0f, 0, 0.0f);
+		   
+					
+		    	}         	   
+		    }
+		});
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		Bundle bundle = getIntent().getExtras();
 	     String wiki = bundle.getString("Wiki");
-		//JSONRPCHttpClient req = new JSONRPCHttpClient("http://10.7.152.228:8001/myproject/login/rpc");
-		//req.setCredentials("luca92", "16071950");
-	     SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
-	     String user = sharedPref.getString("user", "");
-	     String password = sharedPref.getString("pass", "");
-	     String server = sharedPref.getString("server", "");
 		
 	     
-	     
-		//TracServer trac = new TracServer(server,user, password);
 		
-		MainActivity main = new MainActivity();
-		TracServer trac = new TracServer(server,user, password);
+		Login login = new Login();
+		TracServer trac = login.getTrac();
+		
 	    status = (TextView)findViewById(R.id.spinner);
 	   // Log.e("SeI", "SeI");
 	    String string;
@@ -121,9 +209,6 @@ public class WikiActivity extends Activity {
 	        	  String value = input.getText().toString();
 	        	  Bundle bundle = getIntent().getExtras();
 	        	  Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
-					intent.putExtra("Wiki", value);
-					intent.putExtra("id", bundle.getString("id"));
-					intent.putExtra("pass", bundle.getString("pass"));
 				  startActivity(intent);
 	        	  }
 	        	});

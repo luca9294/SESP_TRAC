@@ -1,6 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="fill_parent"
     android:background="#FFFFFF"
     android:gravity="bottom"
     android:orientation="vertical" >
@@ -36,20 +36,19 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="7dp" />
+        android:layout_height="73dp" />
 
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="194dp"
+        android:layout_height="fill_parent"
         android:layout_gravity="bottom"
         android:background="#FFFFFF"
-        android:gravity="bottom"
         android:orientation="vertical" >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_gravity="left|bottom"
             android:gravity="center"
             android:text="TRAC-SERVER Address*"
             android:textAlignment="center"
@@ -79,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10" />
-
+        
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +89,7 @@
             android:textColor="#800000"
             android:textSize="12dp"
             android:textStyle="bold" />
-
+        
         <EditText
             android:id="@+id/editText3"
             android:layout_width="match_parent"
@@ -98,14 +97,16 @@
             android:ems="10"
             android:inputType="textPassword" />
         
-         
+            <Button
+                android:id="@+id/button1"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:text="MANAGE YOUR TRAC ENVIROMENT" />
 
     </LinearLayout>
-   <Button
-                android:id="@+id/button1"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="MANAGE YOUR TRAC ENVIROMENT" />
+
 
 
 </LinearLayout>

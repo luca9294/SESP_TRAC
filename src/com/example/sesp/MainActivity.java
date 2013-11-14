@@ -1,11 +1,14 @@
 package com.example.sesp;
 
 
+import org.json.JSONException;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.AlertDialog.Builder;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.Editable;
@@ -16,35 +19,28 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends Activity {
+	
+	public static Context contextOfApplication;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		
 		setContentView(R.layout.activity_main);
 		 SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
 	     String userSh = sharedPref.getString("user", "");
 	     String passwordSh = sharedPref.getString("pass", "");
 	     String serverSh = sharedPref.getString("server", "");		
+	     contextOfApplication = getApplicationContext();
 		
-		
-		if ((serverSh.length() != 0) && (passwordSh.length() != 0)){
+	if ((serverSh.equals("")) && (passwordSh.equals(""))) {
 			Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
 			intent.putExtra("Wiki", "WikiStart");
 		    startActivity(intent);
-			
-			
-			
 		}
 		
-		
-		
-		
-		else{
-		
-		
-		
-		
-		
+	
+	
 		
 		final EditText server = (EditText) findViewById(R.id.editText1);
 		final EditText user = (EditText) findViewById(R.id.editText2);
@@ -82,31 +78,40 @@ public class MainActivity extends Activity {
 		}
 			
 			else{
+				
+				
 				TracServer server_trac = new TracServer(serverS,userS,passS);
-				//if (server.validLogin()){
-				   SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
-				    //now get Editor
-				   SharedPreferences.Editor editor= sharedPref.edit();
-				    //put your value
-				     editor.putString("user", userS);
-				     editor.putString("pass", passS);
-				     editor.putString("server", serverS);
-				     
-				   //commits your edits
-				     editor.commit();
-				  
-				
-					Intent intent = new Intent(getApplicationContext(), WikiActivity.class);
+				try {
+					server_trac.isValid();
+					Login login = new Login();
+					login.createSession(serverS, userS, passS);
+
+					Intent intent = new Intent(getApplicationContext(),
+							WikiActivity.class);
 					intent.putExtra("Wiki", "WikiStart");
-				    startActivity(intent);
-					
-					
-					
-					
-				//}
-			//	else 
-				//	showDialog(4);
+					startActivity(intent);
+
+				} catch (InterruptedException e) {
+
+					showDialog(4);
+				} catch (JSONException e) {
+
+					showDialog(4);
+				}
+
+				catch (NullPointerException e) {
+
+					showDialog(4);
+
+				}
+
+		
 				
+				
+
+					
+					
+		
 			}
 				
 	
@@ -119,7 +124,7 @@ public class MainActivity extends Activity {
 			
 			
 		});
-		}
+		
 	
 	}
 
@@ -129,6 +134,11 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
+	public static Context getContextOfApplication(){
+	    return contextOfApplication;
+	}
+	
 
 
 

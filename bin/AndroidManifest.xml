@@ -26,6 +26,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.sesp.MainActivity2"
+            android:label="@string/title_activity_wiki" >
+        </activity>
+        <activity
             android:name="com.example.sesp.WikiActivity"
             android:label="@string/title_activity_wiki" >
         </activity>

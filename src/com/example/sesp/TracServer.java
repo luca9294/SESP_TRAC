@@ -108,6 +108,18 @@ boolean logged = false;
 		
 	}
 	
+public boolean isValid() throws InterruptedException, JSONException{
+		
+		List<String> list = this.prova();
+		
+		if (list.isEmpty())
+			return false;
+		
+		else
+			return true;
+		
+	}
+	
 	
 	
 	
