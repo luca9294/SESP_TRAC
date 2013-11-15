@@ -37,6 +37,10 @@
             android:name="com.example.sesp.ListWikiActivity"
             android:label="@string/title_activity_list_wiki" >
         </activity>
+        <activity
+            android:name="com.example.sesp.TicketActivity"
+            android:label="@string/title_activity_ticket" >
+        </activity>
     </application>
 
 </manifest>

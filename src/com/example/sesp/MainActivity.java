@@ -33,17 +33,13 @@ public class MainActivity extends Activity {
 	     String passwordSh = sharedPref.getString("pass", "");
 	     String serverSh = sharedPref.getString("server", "");
 	 
-	     
-		
-	  
-	     
-	     
-	if (serverSh.length() != 0) {
+	  	     
+/*if (! serverSh.equals("")) {
 			Intent intent = new Intent(this.getApplicationContext(), WikiActivity.class);
 			intent.putExtra("Wiki", "WikiStart");
 		    startActivity(intent);
 		}
-
+else{*/
 		
 	contextOfApplication = getApplicationContext();
 		final EditText server = (EditText) findViewById(R.id.editText1);
@@ -130,7 +126,7 @@ public class MainActivity extends Activity {
 		});
 		
 
-	}
+	}//}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_wiki">WikiActivity</string>
     <string name="title_activity_list_wiki">ListWikiActivity</string>
+    <string name="title_activity_ticket">TicketActivity</string>
 
 </resources>

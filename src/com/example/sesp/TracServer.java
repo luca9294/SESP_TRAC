@@ -2,11 +2,15 @@ package com.example.sesp;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsonrpc.JSONRPCException;
 import org.jsonrpc.JSONRPCHttpClient;
+
+
 
 import android.util.Log;
 
@@ -16,6 +20,8 @@ String toE;
 String html, methods;
 boolean login;
 JSONArray list;
+JSONObject object;
+JSONArray array;
 boolean logged = false;
 	
 	
@@ -89,6 +95,88 @@ boolean logged = false;
 			
 	return list;
 	}
+	
+	
+	public Vector<Ticket> getActiveTickets() throws JSONRPCException, JSONException, InterruptedException{
+		
+		Vector<Ticket> list = new Vector<Ticket>();
+			final Thread e = new Thread() {
+
+				@Override
+				public void run() {
+			
+					JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+					req.setCredentials(user, passw);
+					String ticket;
+					
+						try {
+							array = (JSONArray) req.call("ticket.query","status!=closed");
+
+							
+						} catch (JSONRPCException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
+				}};
+				e.start();
+				e.join();
+				
+				
+				
+		for (int i = 0; i<array.length(); i++){
+			Ticket t = new Ticket (array.getInt(i));
+			t.retrieveData();
+			list.add(t);
+			
+			
+			
+		}	
+				
+				
+				
+				
+				
+				
+				
+		return list;
+		
+				
+			}
+	
+	
+	public JSONObject getTicketJohson(int id) throws InterruptedException{
+		
+		final int p = id;
+				
+				final Thread e = new Thread() {
+
+					@Override
+					public void run() {
+				
+						JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+						req.setCredentials(user, passw);
+						String ticket;
+						
+							try {
+								JSONArray array = (JSONArray) req.call("ticket.get",p);
+								 object =  (JSONObject) array.get(3);
+
+								
+							} catch (JSONRPCException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+
+					}};
+					e.start();
+					e.join();
+					
+			return object;
+			}
 	
 	
 	

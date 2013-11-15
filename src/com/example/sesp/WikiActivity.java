@@ -113,6 +113,19 @@ public class WikiActivity extends Activity {
 	 	});
 	 	
 	 	
+	 	menu2.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(WikiActivity.this, TicketActivity.class);
+			    startActivity(intent);
+				
+			}
+			
+
+	 	});
+	 	
+	 	
 	 	menu5.setOnClickListener(new OnClickListener(){
 	 		@Override
 			public void onClick(View arg0) {
