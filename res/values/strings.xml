@@ -7,5 +7,6 @@
     <string name="title_activity_wiki">WikiActivity</string>
     <string name="title_activity_list_wiki">ListWikiActivity</string>
     <string name="title_activity_ticket">TicketActivity</string>
+    <string name="title_activity_ticket_activity_view">TicketActivityView</string>
 
 </resources>

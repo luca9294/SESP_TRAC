@@ -97,7 +97,7 @@ boolean logged = false;
 	}
 	
 	
-	public Vector<Ticket> getActiveTickets() throws JSONRPCException, JSONException, InterruptedException{
+	public Vector<Ticket> getActiveTickets(final String string) throws JSONRPCException, JSONException, InterruptedException{
 		
 		Vector<Ticket> list = new Vector<Ticket>();
 			final Thread e = new Thread() {
@@ -110,8 +110,8 @@ boolean logged = false;
 					String ticket;
 					
 						try {
-							array = (JSONArray) req.call("ticket.query","status!=closed");
-
+							//array = (JSONArray) req.call("ticket.query","status!=closed");
+							array = (JSONArray) req.call("ticket.query",string);
 							
 						} catch (JSONRPCException e) {
 							// TODO Auto-generated catch block

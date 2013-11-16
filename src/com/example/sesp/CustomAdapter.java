@@ -71,6 +71,8 @@ public class CustomAdapter extends BaseAdapter {
         TextView milestone = (TextView) view.findViewById(R.id.mileston);
         milestone.setText(" " +data[6]);
  
+       
+        
         // button click listener
         // this chunk of code will run, if user click the button
         // because, we set the click listener on the button only

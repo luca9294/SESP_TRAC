@@ -9,7 +9,7 @@ public class Ticket {
 	private int id;
 	private String summary, keywords, status, resolution,type,version,milestone,reporter;
 	private String component, priority, description, owner;
-	private Date origine, modification;
+	private String origine, modification;
 	
 	
 
@@ -28,6 +28,13 @@ public void retrieveData() throws JSONException, InterruptedException{
 	
 	JSONObject object = server.getTicketJohson(id);
 	
+	origine=object.getJSONObject("time").getJSONArray("__jsonclass__").getString(1);
+    origine = origine.replace("T", " ");
+	
+    modification=object.getJSONObject("changetime").getJSONArray("__jsonclass__").getString(1);
+    modification = modification.replace("T", " ");
+	
+	
 	summary = object.getString("summary");
 	keywords = object.getString("keywords");
 	status = object.getString("status");
@@ -45,7 +52,7 @@ public void retrieveData() throws JSONException, InterruptedException{
 
 
 public String[] getData(){
-	String[] result = {summary, keywords, status, resolution,type,version,milestone,reporter};
+	String[] result = {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
 	return result;
 	
 }
