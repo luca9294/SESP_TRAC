@@ -45,6 +45,10 @@
             android:name="com.example.sesp.TicketActivityView"
             android:label="@string/title_activity_ticket_activity_view" >
         </activity>
+        <activity
+            android:name="com.example.sesp.NewTicketActivity"
+            android:label="@string/title_activity_prova" >
+        </activity>
     </application>
 
 </manifest>

@@ -8,9 +8,13 @@ import org.jsonrpc.JSONRPCException;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.DisplayMetrics;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
@@ -18,6 +22,7 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -47,7 +52,7 @@ public class TicketActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ticket);
 		bar();
 		
@@ -113,6 +118,146 @@ public class TicketActivity extends Activity {
 		getMenuInflater().inflate(R.menu.ticket, menu);
 		return true;
 	}
+	
+	
+	
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.item1:
+        	Intent intent = new Intent(TicketActivity.this, TicketActivity.class);
+			intent.putExtra("Title", "ACTIVE TICKETS IN YOUR TRAC");
+			intent.putExtra("String", "status!=closed");
+		    startActivity(intent);
+            return true;
+            
+            
+            
+        case R.id.item4:
+        	Intent intent5 = new Intent(TicketActivity.this, TicketActivity.class);
+			intent5.putExtra("Title", "TICKETS IN YOUR TRAC");
+			intent5.putExtra("String", "status!=pokk");
+		    startActivity(intent5);
+            return true;    
+            
+        
+        case R.id.item5:
+        	Intent intent6 = new Intent(TicketActivity.this, NewTicketActivity.class);
+		    startActivity(intent6);
+            return true;    
+            
+            
+            
+            
+        case R.id.item2:
+        	Login loginI = new Login();
+        	try {
+				final String[] string = loginI.getTrac().getMilestones();
+			
+	        	AlertDialog.Builder builder=new AlertDialog.Builder(this);
+	        	builder.setTitle("Select a milestone");
+	        	
+	        	
+	         	builder.setSingleChoiceItems(string,-1, new DialogInterface.OnClickListener() {
+	    			
+	    			@Override
+	    			public void onClick(DialogInterface dialog, int which) {
+	    				// TODO Auto-generated method stub
+	    				LinearLayout ll=(LinearLayout)findViewById(R.id.linear);
+	    				String milestone = string[which];
+	    				Intent intent = new Intent(TicketActivity.this, TicketActivity.class);
+	    				intent.putExtra("Title", "Tickets in the milestone " + milestone);
+	    				intent.putExtra("String", "milestone="+milestone);
+	    			    startActivity(intent);
+	    				
+	    				
+	    
+	    				
+	    			}
+	    		});
+	        	builder.show();
+
+				
+				
+				
+				
+				
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        	
+	        	  
+            return true;
+            
+        
+      
+        
+        
+        case R.id.item3:
+            SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.remove("user");
+            editor.remove("pass");
+            editor.remove("server");
+            editor.clear();
+            editor.commit();
+            
+            Login login1 = new Login();
+            login1.logout();
+            
+            Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+		
+		  startActivity(intent3);
+        
+        
+        
+        
+        
+        }
+        
+        return false;
+    }
+  
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public void bar(){

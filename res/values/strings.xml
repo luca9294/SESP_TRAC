@@ -8,5 +8,24 @@
     <string name="title_activity_list_wiki">ListWikiActivity</string>
     <string name="title_activity_ticket">TicketActivity</string>
     <string name="title_activity_ticket_activity_view">TicketActivityView</string>
+    <string name="type_prompt">Choose a type</string>
+
+    <string-array name="type_array">
+        <item>defect</item>
+        <item>enhancement</item>
+        <item>task</item>
+    </string-array>
+
+    <string name="priority_prompt">Choose a priority</string>
+
+    <string-array name="priority_array">
+        <item>major</item>
+        <item>blocker</item>
+        <item>critical</item>
+        <item>minor</item>
+        <item>trivial</item>
+    </string-array>
+
+    <string name="title_activity_prova">Prova</string>
 
 </resources>

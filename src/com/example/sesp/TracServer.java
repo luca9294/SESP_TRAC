@@ -133,16 +133,93 @@ boolean logged = false;
 			
 		}	
 				
-				
-				
-				
-				
+
 				
 				
 		return list;
 		
 				
 			}
+	
+	
+	
+	
+	public String[] getMilestones() throws InterruptedException, JSONException{
+		String[] list1;
+		final Thread e = new Thread() {
+			
+			@Override
+			public void run() {
+		
+				JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+				req.setCredentials(user, passw);
+				String ticket;
+			
+					try {
+						//array = (JSONArray) req.call("ticket.query","status!=closed");
+						array = (JSONArray) req.call("ticket.milestone.getAll");
+						
+					} catch (JSONRPCException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+			}};
+			e.start();
+			e.join();
+			list1=new String[array.length()];
+			for (int i = 0; i<array.length(); i++){
+			String t  = (array.getString(i));
+			list1[i] = t;
+			
+			}
+			
+		
+		return list1;
+		
+		
+	}
+	
+	
+	
+	public void createTicket(final String summary, final String description, final JSONObject datas) throws InterruptedException, JSONException{
+		final Thread e = new Thread() {
+			
+			@Override
+			public void run() {
+		
+				JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+				req.setCredentials(user, passw);
+				String ticket;
+			
+					try {
+						//array = (JSONArray) req.call("ticket.query","status!=closed");
+					 req.call("ticket.create",summary, description, datas);
+						
+					} catch (JSONRPCException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+			}};
+			e.start();
+			e.join();
+	
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public JSONObject getTicketJohson(int id) throws InterruptedException{
@@ -180,6 +257,12 @@ boolean logged = false;
 	
 	
 	
+
+	
+	
+	
+	
+	
 	public List<String> prova() throws InterruptedException, JSONException{
 		JSONArray arr = this.getLIST();
 		List<String> list = new ArrayList<String>();
@@ -209,7 +292,77 @@ public boolean isValid() throws InterruptedException, JSONException{
 	}
 	
 	
+public String[] getComponent() throws InterruptedException, JSONException{
+	String[] list1;
+	final Thread e = new Thread() {
+		
+		@Override
+		public void run() {
 	
+			JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+			req.setCredentials(user, passw);
+			
+				try {
+					//array = (JSONArray) req.call("ticket.query","status!=closed");
+					array = (JSONArray) req.call("ticket.component.getAll");
+					
+				} catch (JSONRPCException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+		}};
+		e.start();
+		e.join();
+		list1=new String[array.length()];
+		for (int i = 0; i<array.length(); i++){
+		String t  = (array.getString(i));
+		list1[i] = t;
+		
+		}
+		
+	
+	return list1;
+	
+	
+}
+
+
+
+public String[] getVersion() throws InterruptedException, JSONException{
+	String[] list1;
+	final Thread e = new Thread() {
+		
+		@Override
+		public void run() {
+	
+			JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+			req.setCredentials(user, passw);
+			
+				try {
+					//array = (JSONArray) req.call("ticket.query","status!=closed");
+					array = (JSONArray) req.call("ticket.version.getAll");
+					
+				} catch (JSONRPCException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+		}};
+		e.start();
+		e.join();
+		list1=new String[array.length()];
+		for (int i = 0; i<array.length(); i++){
+		String t  = (array.getString(i));
+		list1[i] = t;
+		
+		}
+		
+	
+	return list1;
+	
+	
+}
 	
 	
 	
