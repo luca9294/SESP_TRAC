@@ -292,16 +292,14 @@ public class TicketActivityView extends Activity {
         return true;
         
         
-        
-        
-case R.id.item4:
+ case R.id.item4:
     	
     	AlertDialog.Builder alert4 = new AlertDialog.Builder(this);
-    	alert4.setTitle("TICKET AS NEW");
+    	alert4.setTitle("REOPEN TICKET");
     	
     	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
-    	if ((data[2].equals("closed"))){
-    		alert4.setMessage("This Ticket is closed!\nReopen it to perform operations!");	
+    	if (! (data[2].equals("closed"))){
+    		alert4.setMessage("This ticket is not closed!");	
     		alert4.setPositiveButton("Ok", null);
 
     	}
@@ -309,21 +307,19 @@ case R.id.item4:
     
     		
     	 else{
-			
-    	alert4.setMessage("The owner will be put 'somebody'");
-    	alert4.setPositiveButton("Cancel", null);
+		try {
+			ticket.reopenTicket();
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	alert4.setMessage("The Ticket has been reopened!");
     	alert4.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
     	public void onClick(DialogInterface dialog, int whichButton) {
-    		try {
-				ticket.reassignTicket("somebody");
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-    		
+    	
     		
     	
     		Intent intent = new Intent(TicketActivityView.this, TicketActivity.class);
@@ -339,6 +335,10 @@ case R.id.item4:
     	
         return true;
         
+        
+        
+        
+
 	            
         
 	            

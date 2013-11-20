@@ -133,19 +133,17 @@ public void reassignTicket(String user) throws JSONException, InterruptedExcepti
 	server.updateTicket(id, object);
 
 }
-		
-		
 
+public void reopenTicket() throws JSONException, InterruptedException{
+	//The owner will be changed from (none) to luca92. Next status will be 'accepted'.
+	Login login = new Login();
+	TracServer server = login.getTrac();
+	JSONObject object = new JSONObject();
+	object.put("status", "reopened");
+	object.put("resolution", "");
+	server.updateTicket(id, object);
 
-		
-
-
-
-
-
-
-
-
+}
 
 
 

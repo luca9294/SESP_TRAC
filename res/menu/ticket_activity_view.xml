@@ -12,16 +12,14 @@
        <item  android:id="@+id/item3" 
       android:title="Reassign to"/>  
       
-    <item  android:id="@+id/item4" 
-      android:title="Leave as new"/>  
-      
+
         <item  android:id="@+id/item5" 
       android:title="Modify Ticket"/>  
        
           <item  android:id="@+id/item6" 
       android:title="Delete Ticket"/> 
       
-          <item  android:id="@+id/item6" 
+          <item  android:id="@+id/item4" 
       android:title="Reopen Ticket"/> 
                     
 
