@@ -122,6 +122,17 @@ public void deleteTicket() throws JSONException, InterruptedException{
 	server.deleteTicket(id);
 
 }
+
+
+public void reassignTicket(String user) throws JSONException, InterruptedException{
+	//The owner will be changed from (none) to luca92. Next status will be 'accepted'.
+	Login login = new Login();
+	TracServer server = login.getTrac();
+	JSONObject object = new JSONObject();
+	object.put("owner", user);
+	server.updateTicket(id, object);
+
+}
 		
 		
 

@@ -244,7 +244,49 @@ public class TicketActivityView extends Activity {
 	            
 	            
 	            
-	            
+    case R.id.item3:
+    	
+    	AlertDialog.Builder alert3 = new AlertDialog.Builder(this);
+    	alert3.setTitle("REASSIGN TICKET");
+    	
+    	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
+    	if ((data[2].equals("closed"))){
+    		alert3.setMessage("This Ticket is closed!\nReopen it to perform operations!");	
+    		alert3.setPositiveButton("Ok", null);
+
+    	}
+    	
+    
+    		
+    	 else{
+			
+    	alert3.setMessage("Reassign to");
+    	final EditText input = new EditText(this);
+    	alert3.setView(input);
+    	alert3.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+    	public void onClick(DialogInterface dialog, int whichButton) {
+    		try {
+				ticket.reassignTicket(input.getText().toString());
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		Intent intent = new Intent(TicketActivityView.this, TicketActivity.class);
+			intent.putExtra("Title", "ACTIVE TICKETS IN YOUR TRAC");
+			intent.putExtra("String", "status!=closed");
+		    startActivity(intent);
+    	  }
+    	});}
+
+    
+
+    	alert3.show();
+    	
+        return true;
+        
 	            
 	            
 	            
