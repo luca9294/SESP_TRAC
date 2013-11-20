@@ -85,7 +85,7 @@ public class TicketActivityView extends Activity {
 	    public boolean onOptionsItemSelected(MenuItem item) {
 		 Bundle bundle = getIntent().getExtras();
 		    int id = bundle.getInt("id");
-		    Ticket ticket = new Ticket(id);
+		    final Ticket ticket = new Ticket(id);
 		    Login login = new Login();
 		    try {
 				ticket.retrieveData();
@@ -113,6 +113,15 @@ public class TicketActivityView extends Activity {
 	        		alert.setPositiveButton("Ok", null);
 	  
 	        	}
+	        	
+	        	
+	        	else if ((data[2].equals("closed"))){
+	        		alert.setMessage("The ticket is closed!\nReopen it to perform operations!");	
+	        		alert.setPositiveButton("Ok", null);
+	  
+	        	}
+	        	
+	        	
 	        		
 	        	 else{
 					try {
@@ -140,18 +149,70 @@ public class TicketActivityView extends Activity {
 	        	
 	            return true;
 	            
-	        case R.id.item2:
+	            
+
+	            
+	            
+	        case R.id.item6:
 	        	 
 		        	  
+	        	AlertDialog.Builder alert2 = new AlertDialog.Builder(this);
+	        	alert2.setTitle("DELETE TICKET");
+	        	
+	        	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
+	        	
+	        		
+	        	
+					try {
+						ticket.closeTicket();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+	        	alert2.setMessage("Do you really want to delete this Ticket?");
+	        	
+	        	alert2.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+	        	public void onClick(DialogInterface dialog, int whichButton) {
+	        		try {
+						ticket.deleteTicket();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	        		Intent intent = new Intent(TicketActivityView.this, TicketActivity.class);
+					intent.putExtra("Title", "ACTIVE TICKETS IN YOUR TRAC");
+					intent.putExtra("String", "status!=closed");
+				    startActivity(intent);
+	        	  }
+	        	});
+	        	alert2.setPositiveButton("NO", null);
+	        
+
+	        	alert2.show();
+	            return true;
+	            
+	            
+	            
+	            
+    case R.id.item2:
+	        	
 	        	AlertDialog.Builder alert1 = new AlertDialog.Builder(this);
 	        	alert1.setTitle("CLOSE TICKET");
 	        	
 	        	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
 	        	if ((data[2].equals("closed"))){
-	        		alert1.setMessage("The ticket has already been closed!");	
+	        		alert1.setMessage("This Ticket has been already closed!");	
 	        		alert1.setPositiveButton("Ok", null);
 	  
 	        	}
+	        	
+	        
 	        		
 	        	 else{
 					try {
@@ -176,7 +237,16 @@ public class TicketActivityView extends Activity {
 	        
 
 	        	alert1.show();
+	        	
 	            return true;
+	            
+	            
+	            
+	            
+	            
+	            
+	            
+	            
 	            
 	        
 	      
