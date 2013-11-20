@@ -263,7 +263,8 @@ public class TicketActivityView extends Activity {
     	alert3.setMessage("Reassign to");
     	final EditText input = new EditText(this);
     	alert3.setView(input);
-    	alert3.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+    	alert3.setPositiveButton("Cancel", null);
+    	alert3.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
     	public void onClick(DialogInterface dialog, int whichButton) {
     		try {
 				ticket.reassignTicket(input.getText().toString());
@@ -274,6 +275,9 @@ public class TicketActivityView extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+    		
+    		
+    	
     		Intent intent = new Intent(TicketActivityView.this, TicketActivity.class);
 			intent.putExtra("Title", "ACTIVE TICKETS IN YOUR TRAC");
 			intent.putExtra("String", "status!=closed");
@@ -287,7 +291,56 @@ public class TicketActivityView extends Activity {
     	
         return true;
         
+        
+        
+        
+case R.id.item4:
+    	
+    	AlertDialog.Builder alert4 = new AlertDialog.Builder(this);
+    	alert4.setTitle("TICKET AS NEW");
+    	
+    	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
+    	if ((data[2].equals("closed"))){
+    		alert4.setMessage("This Ticket is closed!\nReopen it to perform operations!");	
+    		alert4.setPositiveButton("Ok", null);
+
+    	}
+    	
+    
+    		
+    	 else{
+			
+    	alert4.setMessage("The owner will be put 'somebody'");
+    	alert4.setPositiveButton("Cancel", null);
+    	alert4.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
+    	public void onClick(DialogInterface dialog, int whichButton) {
+    		try {
+				ticket.reassignTicket("somebody");
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    		
+    		
+    	
+    		Intent intent = new Intent(TicketActivityView.this, TicketActivity.class);
+			intent.putExtra("Title", "ACTIVE TICKETS IN YOUR TRAC");
+			intent.putExtra("String", "status!=closed");
+		    startActivity(intent);
+    	  }
+    	});}
+
+    
+
+    	alert4.show();
+    	
+        return true;
+        
 	            
+        
 	            
 	            
 	        
