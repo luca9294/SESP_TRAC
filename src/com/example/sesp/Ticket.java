@@ -98,13 +98,24 @@ public void acceptTicket() throws JSONException, InterruptedException{
 	owner = login.getUser();
 	status = "accepted";
 	server.updateTicket(id, object);
-	
-	
-	
-	
-	
-	
+
 }
+
+public void closeTicket() throws JSONException, InterruptedException{
+	//The owner will be changed from (none) to luca92. Next status will be 'accepted'.
+	Login login = new Login();
+	TracServer server = login.getTrac();
+	JSONObject object = new JSONObject();
+	object.put("resolution", "fixed");
+	object.put("status", "closed");
+	resolution = "fixed";
+	status = "closed";
+	server.updateTicket(id, object);
+
+}
+		
+
+
 		
 
 

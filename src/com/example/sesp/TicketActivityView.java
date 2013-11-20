@@ -140,37 +140,49 @@ public class TicketActivityView extends Activity {
 	        	
 	            return true;
 	            
-	       /* case R.id.item2:
+	        case R.id.item2:
 	        	 
-		        	   Intent intent = new Intent(getApplicationContext(), ListWikiActivity.class);
-					
-					  startActivity(intent);
 		        	  
+	        	AlertDialog.Builder alert1 = new AlertDialog.Builder(this);
+	        	alert1.setTitle("CLOSE TICKET");
+	        	
+	        	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
+	        	if ((data[2].equals("closed"))){
+	        		alert1.setMessage("The ticket has already been closed!");	
+	        		alert1.setPositiveButton("Ok", null);
+	  
+	        	}
+	        		
+	        	 else{
+					try {
+						ticket.closeTicket();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}	
+	        	alert1.setMessage("The Ticket has been closed");
+	        	alert1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	        	public void onClick(DialogInterface dialog, int whichButton) {
+	        		Intent intent = new Intent(TicketActivityView.this, TicketActivity.class);
+					intent.putExtra("Title", "ACTIVE TICKETS IN YOUR TRAC");
+					intent.putExtra("String", "status!=closed");
+				    startActivity(intent);
+	        	  }
+	        	});}
+
+	        
+
+	        	alert1.show();
 	            return true;
 	            
 	        
 	      
 	        
 	        
-	        case R.id.item3:
-	            SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
-	            SharedPreferences.Editor editor = sharedPref.edit();
-	            editor.remove("user");
-	            editor.remove("pass");
-	            editor.remove("server");
-	            editor.clear();
-	            editor.commit();
-	            
-	            Login login = new Login();
-	            login.logout();
-	            
-	            Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
-			
-			  startActivity(intent2);
-	        
-	        
-	        
-	        */
+	      
 	        
 	        }
 	        
