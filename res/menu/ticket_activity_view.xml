@@ -1,9 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+
+    
+      
+       <item  android:id="@+id/item1" 
+      android:title="Accept Ticket"/>  
+      
+      <item  android:id="@+id/item2" 
+      android:title="Close Ticket"/> 
+   
+       <item  android:id="@+id/item3" 
+      android:title="Reassign to"/>  
+      
+    <item  android:id="@+id/item4" 
+      android:title="Leave as new"/>  
+      
+        <item  android:id="@+id/item5" 
+      android:title="Modify Ticket"/>  
+                    
+                    
 
 </menu>

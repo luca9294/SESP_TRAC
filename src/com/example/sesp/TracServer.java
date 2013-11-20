@@ -209,16 +209,7 @@ boolean logged = false;
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	
@@ -326,6 +317,42 @@ public String[] getComponent() throws InterruptedException, JSONException{
 	
 	
 }
+
+
+
+public void updateTicket(final int id, final JSONObject data) throws InterruptedException, JSONException{
+	//String[] list1 = {"ciao"};
+	final Thread e = new Thread() {
+		
+		@Override
+		public void run() {
+	
+			JSONRPCHttpClient req = new JSONRPCHttpClient(url + "/login/rpc");
+			req.setCredentials(user, passw);
+			
+				try {
+					//array = (JSONArray) req.call("ticket.query","status!=closed");
+					//JSONObject object = new JSONObject();
+					//object.put("status", "closed");
+					
+					req.call("ticket.update",id,"",data,false);
+					
+				} catch (JSONRPCException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+		}};
+		e.start();
+		e.join();
+	
+		
+	
+}
+
+
+
+
 
 
 

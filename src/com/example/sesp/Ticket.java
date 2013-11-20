@@ -57,6 +57,26 @@ public String[] getData(){
 	
 }
 
+public boolean isActive(){
+	if (status!="closed")
+		return true;
+	
+	
+	else 
+		return false;
+	
+	
+	
+	
+}
+
+
+public String getOwner(){
+	 return owner;
+}
+
+
+
 public String getStringID(){
 	return String.valueOf(id);
 	
@@ -64,6 +84,25 @@ public String getStringID(){
 
 public int getID(){
 	return id;
+	
+}
+
+
+public void acceptTicket() throws JSONException, InterruptedException{
+	//The owner will be changed from (none) to luca92. Next status will be 'accepted'.
+	Login login = new Login();
+	TracServer server = login.getTrac();
+	JSONObject object = new JSONObject();
+	object.put("owner", login.getUser());
+	object.put("status", "accepted");
+	owner = login.getUser();
+	status = "accepted";
+	server.updateTicket(id, object);
+	
+	
+	
+	
+	
 	
 }
 		
