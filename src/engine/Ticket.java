@@ -1,9 +1,10 @@
-package com.example.sesp;
+package engine;
 
 import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 public class Ticket {
 	private int id;
@@ -64,9 +65,6 @@ public boolean isActive(){
 	
 	else 
 		return false;
-	
-	
-	
 	
 }
 
@@ -145,6 +143,14 @@ public void reopenTicket() throws JSONException, InterruptedException{
 
 }
 
+
+public void modifyTicket(JSONObject object) throws JSONException, InterruptedException{
+	//The owner will be changed from (none) to luca92. Next status will be 'accepted'.
+	Login login = new Login();
+	TracServer server = login.getTrac();
+	server.updateTicket(id, object);
+
+}
 
 
 

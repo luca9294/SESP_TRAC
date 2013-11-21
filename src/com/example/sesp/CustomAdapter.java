@@ -12,6 +12,8 @@ import android.widget.Toast;
  
 import java.util.ArrayList;
 import java.util.Vector;
+
+import engine.Ticket;
  
 /**
  * Created with IntelliJ IDEA.

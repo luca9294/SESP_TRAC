@@ -15,8 +15,8 @@
 
     <application
         android:allowBackup="true"
-        android:theme="@style/AppTheme" 
-        android:icon="@drawable/tracf">
+        android:icon="@drawable/tracf"
+        android:theme="@style/AppTheme" >
         <activity
             android:name="com.example.sesp.MainActivity"
             android:label="@string/app_name" >
@@ -49,6 +49,10 @@
         <activity
             android:name="com.example.sesp.NewTicketActivity"
             android:label="@string/title_activity_prova" >
+        </activity>
+        <activity
+            android:name="com.example.sesp.ModifyActivity"
+            android:label="@string/title_activity_modify" >
         </activity>
     </application>
 

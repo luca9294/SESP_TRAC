@@ -27,5 +27,6 @@
     </string-array>
 
     <string name="title_activity_prova">Prova</string>
+    <string name="title_activity_modify">ModifyActivity</string>
 
 </resources>

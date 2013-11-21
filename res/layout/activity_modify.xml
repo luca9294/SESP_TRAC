@@ -1,0 +1,168 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".NewTicketActivity21" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modify Ticket # "
+        android:textColor="#800000"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+    <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp" />
+    
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Summary*: "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description*:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+     
+        android:ems="10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Type: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/type_array"
+            android:prompt="@string/type_prompt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Priority: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/priority"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/priority_array"
+            android:prompt="@string/priority_prompt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Milestone: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/milestone"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:entries="@array/priority_array"
+            android:prompt="@string/priority_prompt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Component:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/component"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:entries="@array/priority_array"
+            android:prompt="@string/priority_prompt" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="wrap_content"
+            android:text="Version: "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/version"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:entries="@array/priority_array"
+            android:prompt="@string/priority_prompt" />
+        
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="100dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modify Ticket" 
+        android:layout_gravity="bottom"
+        />
+
+</LinearLayout>

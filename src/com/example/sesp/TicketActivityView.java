@@ -2,6 +2,9 @@ package com.example.sesp;
 
 import org.json.JSONException;
 
+import engine.Login;
+import engine.Ticket;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -313,6 +316,11 @@ public class TicketActivityView extends Activity {
         return true;
         
         
+        
+        
+        
+
+        
  case R.id.item4:
     	
     	AlertDialog.Builder alert4 = new AlertDialog.Builder(this);
@@ -353,10 +361,37 @@ public class TicketActivityView extends Activity {
     
 
     	alert4.show();
+    	return true;
+    	
+    	
+    	
+ case R.id.item5:
+ 	
+ 	AlertDialog.Builder alert5 = new AlertDialog.Builder(this);
+ 	alert5.setTitle("MODIFY TICKET");
+ 	
+ 	// {summary, keywords, status, resolution,type,version,milestone,reporter,priority,component,owner,origine, modification,description};
+ 	if ((data[2].equals("closed"))){
+ 		alert5.setMessage("This ticket is closed!\nReopen it to perform operations.");	
+ 		alert5.setPositiveButton("Ok", null);
+ 	 	alert5.show();
+ 	}
+ 	
+ 
+ 		
+ 	 else{
+ 		Intent intent = new Intent(TicketActivityView.this, ModifyActivity.class);
+			intent.putExtra("id", ticket.getID());
+		    startActivity(intent);
+ 	  }
+
+ 
+
+
 
         return true;
-        
 
+        
 
 	        
 	        }
