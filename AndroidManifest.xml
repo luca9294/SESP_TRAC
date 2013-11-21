@@ -32,7 +32,7 @@
         </activity>
         <activity
             android:name="com.example.sesp.WikiActivity"
-            android:label="@string/title_activity_wiki" >
+          android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.sesp.ListWikiActivity"
@@ -40,11 +40,11 @@
         </activity>
         <activity
             android:name="com.example.sesp.TicketActivity"
-            android:label="@string/title_activity_ticket" >
+           android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.sesp.TicketActivityView"
-            android:label="@string/title_activity_ticket_activity_view" >
+           android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.sesp.NewTicketActivity"

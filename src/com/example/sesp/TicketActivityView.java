@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.view.MenuItem.OnMenuItemClickListener;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -45,7 +46,6 @@ public class TicketActivityView extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ticket_activity_view);
 		
 		bar();
@@ -126,6 +126,37 @@ public class TicketActivityView extends Activity {
 		 
 		 switch (item.getItemId()) {
 	       //Accept Ticket
+		 case R.id.action_search:
+	        	item.setOnMenuItemClickListener(new OnMenuItemClickListener(){
+
+					@Override
+					public boolean onMenuItemClick(MenuItem arg0) {
+						if(!isExpanded){
+				    		isExpanded = true;   		    				        		
+				        	
+				    		//Expand
+				    		new ExpandAnimation(slidingPanel, panelWidth,
+				    	    Animation.RELATIVE_TO_SELF, 0.0f,
+				    	    Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);		    			         	    
+				    	}else{
+				    		isExpanded = false;
+				    		
+				    		//Collapse
+				    		new CollapseAnimation(slidingPanel,panelWidth,
+		            	    TranslateAnimation.RELATIVE_TO_SELF, 0.75f,
+		            	    TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, 0.0f, 0, 0.0f);
+					}
+						return isExpanded;
+
+	        		
+	        	}});
+	        	return true;
+		 
+		 
+		 
+		 
+		 
+		 
 	        case R.id.item1:
 	        	
 	        	AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -405,10 +436,7 @@ public class TicketActivityView extends Activity {
 			getWindowManager().getDefaultDisplay().getMetrics(metrics);
 			panelWidth = (int) ((metrics.widthPixels)*0.75);
 		
-			headerPanel = (RelativeLayout) findViewById(R.id.header);
-			headerPanelParameters = (LinearLayout.LayoutParams) headerPanel.getLayoutParams();
-			headerPanelParameters.width = metrics.widthPixels;
-			headerPanel.setLayoutParams(headerPanelParameters);
+		
 			
 			menuPanel = (RelativeLayout) findViewById(R.id.menuPanel);
 			menuPanelParameters = (FrameLayout.LayoutParams) menuPanel.getLayoutParams();
@@ -472,40 +500,7 @@ public class TicketActivityView extends Activity {
 		 	
 			 
 		
-			menuViewButton = (ImageView) findViewById(R.id.menuViewButton);
 			
-			menuViewButton.setOnClickListener(new OnClickListener() {
-			    public void onClick(View v) {
-			    	if(!isExpanded){
-			    		isExpanded = true;   		    				        		
-			        	
-			    		//Expand
-			    		new ExpandAnimation(slidingPanel, panelWidth,
-			    	    Animation.RELATIVE_TO_SELF, 0.0f,
-			    	    Animation.RELATIVE_TO_SELF, 0.75f, 0, 0.0f, 0, 0.0f);		    			         	    
-			    	}else{
-			    		isExpanded = false;
-			    		
-			    		//Collapse
-			    		new CollapseAnimation(slidingPanel,panelWidth,
-	            	    TranslateAnimation.RELATIVE_TO_SELF, 0.75f,
-	            	    TranslateAnimation.RELATIVE_TO_SELF, 0.0f, 0, 0.0f, 0, 0.0f);
-			   
-						
-			    	}         	   
-			    }
-			});
-			
-			menuViewButton1 = (ImageView) findViewById(R.id.imageViewButton);
-			
-			menuViewButton1.setOnClickListener(new OnClickListener() {
-			    public void onClick(View v) {
-			    	openOptionsMenu();
-			   
-						
-			    	}         	   
-			    }
-			);
 	
 	
 	

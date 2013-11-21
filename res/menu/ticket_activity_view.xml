@@ -1,7 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
 
-    
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/icon_menu"
+          android:title="action_search"
+          android:showAsAction="ifRoom" />
       
        <item  android:id="@+id/item1" 
       android:title="Accept Ticket"/>  
