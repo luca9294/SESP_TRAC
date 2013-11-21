@@ -93,6 +93,33 @@ public class Login {
 		}
 	
 	
+	public boolean isLogged(){
+		Context applicationContext = MainActivity.getContextOfApplication();
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(applicationContext);	
+		// put your value
+		 String userSh = prefs.getString("user", "");
+	     String passwordSh = prefs.getString("pass", "");
+	     String serverSh = prefs.getString("server", "");	
+	
+	     
+	     if (userSh.equals("")){
+	    	 
+	    	 return false;
+	    	 
+	     }
+	     else{
+	     
+	     
+	     return true;
+		
+		
+	     }
+		
+		
+		
+	}
+	
+	
 	
 	
 	

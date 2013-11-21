@@ -38,7 +38,7 @@ public class TicketActivity extends Activity {
 	private RelativeLayout headerPanel;
 	private RelativeLayout menuPanel;
 	private int panelWidth;
-	private ImageView menuViewButton;
+	private ImageView menuViewButton,menuViewButton1;
 	Button menu1, menu4, menu5;
 	Button menu2,menu3, title ;
 	FrameLayout.LayoutParams menuPanelParameters;
@@ -52,7 +52,7 @@ public class TicketActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		//this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_ticket);
 		bar();
 		
@@ -356,6 +356,16 @@ public class TicketActivity extends Activity {
 		    }
 		});
 		
+		menuViewButton1 = (ImageView) findViewById(R.id.imageViewButton);
+		
+		menuViewButton1.setOnClickListener(new OnClickListener() {
+		    public void onClick(View v) {
+		    	openOptionsMenu();
+		   
+					
+		    	}         	   
+		    }
+		);
 		
 		
 		

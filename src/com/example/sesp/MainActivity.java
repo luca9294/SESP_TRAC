@@ -28,20 +28,17 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		
-		 SharedPreferences sharedPref= getSharedPreferences("mypref", 0);
-	     String userSh = sharedPref.getString("user", "");
-	     String passwordSh = sharedPref.getString("pass", "");
-	     String serverSh = sharedPref.getString("server", "");
-	 
+	Login login = new Login();
+	contextOfApplication = getApplicationContext();
 	  	     
-/*if (! serverSh.equals("")) {
+if (login.isLogged()) {
 			Intent intent = new Intent(this.getApplicationContext(), WikiActivity.class);
 			intent.putExtra("Wiki", "WikiStart");
 		    startActivity(intent);
 		}
-else{*/
+else{
 		
-	contextOfApplication = getApplicationContext();
+
 		final EditText server = (EditText) findViewById(R.id.editText1);
 		final EditText user = (EditText) findViewById(R.id.editText2);
 		final EditText pass = (EditText) findViewById(R.id.editText3);
@@ -110,7 +107,7 @@ else{*/
 				
 
 					
-					
+			
 		
 			}
 				
@@ -124,7 +121,7 @@ else{*/
 			
 			
 		});
-		
+}
 
 	}//}
 

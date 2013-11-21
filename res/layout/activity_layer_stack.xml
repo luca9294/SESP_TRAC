@@ -147,7 +147,9 @@
 			                android:clickable="true"
 			                android:src="@drawable/icon_menu"
 			                android:visibility="visible" />
-			      
+
+			              
+
   				</RelativeLayout>
   				  <TextView
                 android:id="@+id/listepays"
@@ -161,8 +163,7 @@
  				 
             </TextView>
 
-         
-		        
+  				
 
 		</LinearLayout>
 </FrameLayout>
